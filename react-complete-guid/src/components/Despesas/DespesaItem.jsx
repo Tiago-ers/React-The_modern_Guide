@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DespesaData from './DespesaData';
+import Card from '../UI/Card';
 import './DespesaItem.css';
 
 function DespesaItem(props) {
-  const [title, setTitle] = useState(props.title);
-
-  const clickHandler = () => {
-    setTitle('Updated!');
-    console.log(title);
-  };
-
+  console.log('DespesaItem', props.date);
   return (
-    <div className='expense-item'>
-      <DespesaData date={props.date} />
-      <div className='expense-item__description'>
-        <h2>{title}</h2>
-        <div className='expense-item__price'>${props.price}</div>
+    <Card className='expense-item'>
+      <div className='expense-item'>
+        <DespesaData date={props.date} />
+        <div className='expense-item__description'>
+          <h2>{props.title}</h2>
+          <div className='expense-item__price'>R$ {props.amount}</div>
+        </div>
       </div>
-      <button onClick={clickHandler}>Mudar titulo</button>
-    </div>
+    </Card>
   );
 }
 

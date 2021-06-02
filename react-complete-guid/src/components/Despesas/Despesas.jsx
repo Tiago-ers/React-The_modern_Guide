@@ -1,30 +1,38 @@
-import DespesaItem from "./DespesaItem";
-import './Despesas.css'
+import React, { useState } from 'react';
+
+import DespesaFiltro from './DespesaFiltro';
+import './Despesas.css';
+import DespesaList from './DespesaList';
 
 function Despesas(props) {
+  const [filterYear, setFilterYear] = useState('2021');
+
+  const filterChangeHandler = (selectYear) => {
+    setFilterYear(selectYear);
+  };
+
+  const filterDespesasAno = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filterYear;
+  });
+
   return (
-    <div className="expenses">
-      <DespesaItem
-        date={props.items[0].date}
-        title={props.items[0].title}
-        price={props.items[0].amount}
+    <div className='expenses'>
+      <DespesaFiltro
+        selected={filterYear}
+        onChangeFilter={filterChangeHandler}
       />
-      <DespesaItem
-        date={props.items[1].date}
-        title={props.items[1].title}
-        price={props.items[1].amount}
-      />
-      <DespesaItem
-        date={props.items[2].date}
-        title={props.items[2].title}
-        price={props.items[2].amount}
-      />
-      <DespesaItem
-        date={props.items[3].date}
-        title={props.items[3].title}
-        price={props.items[3].amount}
-      />
-  </div>
+      <DespesaList items={filterDespesasAno} />
+      {/* {filterDespesasAno.length === 0 && <p>Período sem despesas.</p>} */}
+      {/* {filterDespesasAno.length > 0 &&
+        filterDespesasAno.map((expense) => (
+          <DespesaItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+          />
+        ))} */}
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FormDespesa.css';
 
-const FormDespesa = () => {
+const FormDespesa = (props) => {
   //   const [title, setTitle] = useState('');
   //   const [amount, setAmount] = useState('');
   //   const [date, setDate] = useState('');
@@ -38,7 +38,7 @@ const FormDespesa = () => {
   };
 
   const dateChangeHandler = (event) => {
-    console.log(event.target.value);
+    console.log(new Date(event.target.value));
     // setUserInputs({
     //   ...userInputs,
     //   date: event.target.value,
@@ -54,11 +54,11 @@ const FormDespesa = () => {
     const dadosDespesa = {
       title: userInputs.title,
       amount: userInputs.amount,
-      date: userInputs.date,
+      date: new Date(userInputs.date),
     };
 
-    console.log('Vamos ver', dadosDespesa);
-    
+    props.onSaveDataDespesa(dadosDespesa);
+
     //Limpa inputs
     setUserInputs({
       ...userInputs,
