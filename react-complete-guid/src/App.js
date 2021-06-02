@@ -1,8 +1,8 @@
-import Despesa from './components/Despesas/Despesas.jsx'
+import Despesa from './components/Despesas/Despesas.jsx';
+import NovaDespesa from './components/NovaDespesa/NovaDespesa.jsx';
 import './App.css';
 
 function App() {
-
   const expenses = [
     {
       id: 'e1',
@@ -25,8 +25,9 @@ function App() {
     },
   ];
   return (
-    <div className="App">
-      <h1>Vamos que vamos </h1>
+    <div className='App'>
+      <NovaDespesa />
+
       <Despesa items={expenses} />
     </div>
   );
